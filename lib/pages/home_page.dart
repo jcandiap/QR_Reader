@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:qr_reader/pages/direcciones_page.dart';
+import 'package:qr_reader/pages/mapas_page.dart';
 import 'package:qr_reader/widgets/custom_navigatorBar.dart';
+import 'package:qr_reader/widgets/scan_button.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -19,10 +22,29 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: const Center(
-        child: Text('Home Page'),
-     ),
+      body: const _HomePageBody(),
      bottomNavigationBar: const CustomNavigationBar(),
+     floatingActionButton: const ScanButton(),
+     floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
    );
+  }
+}
+class _HomePageBody extends StatelessWidget {
+  const _HomePageBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    
+    const currentIndex = 1;
+
+    switch ( currentIndex ) {
+      case 0:
+        return const MapasPage();
+      case 1:
+        return const DireccionesPage();
+      default:
+        return const MapasPage();
+    }
+
   }
 }
